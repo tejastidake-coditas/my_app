@@ -21,7 +21,7 @@ class ProductListingDataSourceImplementation
     try {
       final result = await networkService.request(
         NetworkConstants.productEndPoint,
-        method: Method.get,
+        Method.get,
       );
       return result.fold((failure) => Left(failure), (response) {
         if (response.data is Map<String, dynamic>) {

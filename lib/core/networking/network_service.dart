@@ -56,9 +56,9 @@ class NetworkService {
   }
 
   Future<Either<Failure, Response<dynamic>>> request(
-    String endpoint, {
-    required Method method,
-  }) async {
+    String endpoint,
+    Method method,
+  ) async {
     Response response;
 
     try {
@@ -93,6 +93,8 @@ class NetworkService {
           ),
         );
       }
+    } on DioException catch (error) {
+      return Left(Failure(error.toString()));
     } catch (e) {
       return Left(UnexpectedFailure());
     }
